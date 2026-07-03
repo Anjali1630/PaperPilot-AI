@@ -108,73 +108,8 @@ flowchart TB
     Papers --> Files
     ExportR --> SQLite
     DashR --> SQLite
-
-## Folder Structure
-
 ```
-paperpilot-ai/
-├── backend/
-│   ├── app/
-│   │   ├── main.py                 # FastAPI entrypoint
-│   │   ├── config.py                # Settings (env-driven)
-│   │   ├── database.py              # SQLAlchemy models + session
-│   │   ├── auth.py                  # JWT + password hashing
-│   │   ├── schemas.py               # Pydantic request/response models
-│   │   ├── ai/
-│   │   │   ├── model_manager.py     # Lazy-loaded HF/spaCy/KeyBERT singletons
-│   │   │   ├── summarizer.py
-│   │   │   ├── simplifier.py
-│   │   │   ├── keywords.py
-│   │   │   ├── contributions.py
-│   │   │   ├── gaps.py
-│   │   │   ├── methodology.py
-│   │   │   ├── flashcards.py
-│   │   │   ├── viva.py
-│   │   │   ├── difficulty.py
-│   │   │   ├── citations.py
-│   │   │   ├── ppt_outline.py
-│   │   │   ├── rag.py               # Chat-with-PDF (FAISS + QA)
-│   │   │   ├── compare.py
-│   │   │   └── pipeline.py          # Orchestrates the full analysis
-│   │   ├── export/
-│   │   │   ├── pdf_export.py
-│   │   │   ├── docx_export.py
-│   │   │   ├── pptx_export.py
-│   │   │   └── text_export.py       # Markdown + TXT
-│   │   ├── routes/
-│   │   │   ├── auth_routes.py
-│   │   │   ├── papers_routes.py
-│   │   │   ├── chat_routes.py
-│   │   │   ├── compare_routes.py
-│   │   │   ├── export_routes.py
-│   │   │   └── dashboard_routes.py
-│   │   └── utils/
-│   │       └── pdf_processor.py     # Text/section extraction, chunking
-│   ├── requirements.txt
-│   ├── .env.example
-│   └── Dockerfile
-├── frontend/
-│   ├── src/
-│   │   ├── pages/                   # Landing, Login, Register, Dashboard,
-│   │   │                              Upload, Analysis, Compare, Chat,
-│   │   │                              History, Settings, About
-│   │   ├── components/              # Sidebar, Topbar, AppLayout, UI kit
-│   │   ├── context/AuthContext.jsx
-│   │   ├── api/                     # Axios client + endpoint functions
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── package.json
-│   ├── tailwind.config.js
-│   ├── vite.config.js
-│   └── Dockerfile
-├── sample_data/                     # Where to drop test PDFs
-├── docker-compose.yml
-├── .gitignore
-└── README.md
 ```
-
----
-
 ## Installation
 
 ### Prerequisites
