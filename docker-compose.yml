@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: paperpilot-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/data:/app/data
+      - ./backend/uploads:/app/uploads
+    environment:
+      - ENV=production
+      - SECRET_KEY=${SECRET_KEY:-change-this-secret-key-in-production}
+      - DATABASE_URL=sqlite:///./data/paperpilot.db
+      - FRONTEND_ORIGINS=http://localhost:5173,http://localhost:3000,http://localhost
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: paperpilot-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
