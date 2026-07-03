@@ -1,40 +1,39 @@
-#  PaperPilot AI
+# 📄 PaperPilot AI
 
-**AI-Powered Research Paper Summarizer and Academic Assistant**
+### AI-Powered Research Paper Summarizer and Academic Assistant
 
-PaperPilot AI helps students, researchers, and professors understand research papers fast. Upload a PDF and get executive/standard/detailed summaries, a simplified explanation, key contributions, research gaps, future scope, a full methodology breakdown, keywords, flashcards, viva questions, a ready-made PPT outline, citations in 4 formats, a difficulty score, a RAG-based chat interface, and multi-paper comparison — all export to PDF, DOCX, PPTX, Markdown, or TXT.
+PaperPilot AI helps students, researchers, and professors understand research papers fast. Upload a PDF and get executive/standard/detailed summaries, a simplified explanation, key contributions, research gaps, future scope, a full methodology breakdown, keywords, flashcards, viva questions, a ready-made PPT outline, citations in 4 formats, a difficulty score, a RAG-based chat interface, and multi-paper comparison — all exportable to PDF, DOCX, PPTX, Markdown, or TXT.
 
-**Every AI feature runs 100% locally on free, open-source models. No OpenAI/Gemini/Claude/Azure API key is required, and no paid service is called at any point.**
+Every AI feature runs **100% locally** on free, open-source models. No OpenAI/Gemini/Claude/Azure API key is required, and no paid service is called at any point.
 
 ---
 
 ## Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Architecture](#architecture)
-- [Folder Structure](#folder-structure)
-- [Installation](#installation)
-- [Running with Docker](#running-with-docker)
-- [Usage](#usage)
-- [API Documentation](#api-documentation)
-- [Troubleshooting](#troubleshooting)
-- [Future Scope](#future-scope)
-- [License](#license)
+* [Features](#features)
+* [Tech Stack](#tech-stack)
+* [Architecture](#architecture)
+* [Folder Structure](#folder-structure)
+* [Installation](#installation)
+* [Running with Docker](#running-with-docker)
+* [Usage](#usage)
+* [API Documentation](#api-documentation)
+* [Troubleshooting](#troubleshooting)
+* [Future Scope](#future-scope)
+* [License](#license)
 
 ---
 
 ## Features
 
 | Category | Details |
-|---|---|
+| :--- | :--- |
 | **Auth** | Local username/password auth (JWT), no third-party identity provider |
 | **Upload** | Drag-and-drop, multi-file, progress bar, size/type validation |
 | **Parsing** | Title, authors, abstract, and section extraction (PyMuPDF + heading heuristics) |
 | **Summaries** | Executive (~100w), Standard (~300w), Detailed (~700w) via local BART |
 | **Simplified Explanation** | Beginner-friendly rewrite + auto-glossary of acronyms |
 | **Key Contributions** | Embedding-similarity + cue-phrase extractive analysis |
-| **Research Gaps / Future Scope** | Same extractive technique, different anchor sentences |
+| **Research Gaps / Scope** | Same extractive technique, different anchor sentences |
 | **Methodology Breakdown** | Datasets, algorithms, metrics, and pipeline steps |
 | **Keywords** | Top 20 keyphrases via KeyBERT |
 | **Flashcards** | Auto-generated Q/A + cloze cards |
@@ -53,13 +52,15 @@ PaperPilot AI helps students, researchers, and professors understand research pa
 
 ## Tech Stack
 
-**Frontend:** React, Vite, Tailwind CSS, React Router, Axios, Framer Motion, Recharts, Lucide Icons
-**Backend:** FastAPI, Python 3.11, SQLAlchemy, SQLite
-**AI/NLP:** HuggingFace Transformers (`facebook/bart-large-cnn`), Sentence-Transformers (`all-MiniLM-L6-v2`), KeyBERT, spaCy, FAISS, extractive QA (`deepset/roberta-base-squad2`)
-**Export:** python-docx, python-pptx, ReportLab
-**Auth:** python-jose (JWT) + passlib (bcrypt), fully local
+* **Frontend:** React, Vite, Tailwind CSS, React Router, Axios, Framer Motion, Recharts, Lucide Icons
+* **Backend:** FastAPI, Python 3.11, SQLAlchemy, SQLite
+* **AI/NLP:** HuggingFace Transformers (`facebook/bart-large-cnn`), Sentence-Transformers (`all-MiniLM-L6-v2`), KeyBERT, spaCy, FAISS, extractive QA (`deepset/roberta-base-squad2`)
+* **Export:** python-docx, python-pptx, ReportLab
+* **Auth:** python-jose (JWT) + passlib (bcrypt), fully local
 
 ---
+
+## Architecture
 
 ```mermaid
 flowchart TB
@@ -99,7 +100,6 @@ flowchart TB
 
     UI -->|REST / JSON| API
     
-    %% Fixed: Pointing directly to individual nodes inside subgraphs instead of subgraph wrappers
     Papers --> PDF
     ChatR --> RAG
     
@@ -108,8 +108,6 @@ flowchart TB
     Papers --> Files
     ExportR --> SQLite
     DashR --> SQLite
-
----
 
 ## Folder Structure
 
