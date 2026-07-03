@@ -1,4 +1,4 @@
-# 📄 PaperPilot AI
+#  PaperPilot AI
 
 **AI-Powered Research Paper Summarizer and Academic Assistant**
 
@@ -61,53 +61,53 @@ PaperPilot AI helps students, researchers, and professors understand research pa
 
 ---
 
-## Architecture
-
 ```mermaid
 flowchart TB
     subgraph Client["Frontend (React + Vite + Tailwind)"]
-        UI[Pages: Dashboard, Upload, Analysis,\nCompare, Chat, History, Settings]
+        UI["UI Pages: Dashboard, Upload, Analysis, Compare, Chat, History, Settings"]
     end
 
     subgraph API["Backend (FastAPI)"]
-        Auth[Auth Routes\nJWT + bcrypt]
-        Papers[Papers Routes\nUpload / List / Detail / Delete]
-        ChatR[Chat Routes]
-        CompareR[Compare Routes]
-        ExportR[Export Routes]
-        DashR[Dashboard Routes]
+        Auth["Auth Routes (JWT + bcrypt)"]
+        Papers["Papers Routes (Upload / List / Detail / Delete)"]
+        ChatR["Chat Routes"]
+        CompareR["Compare Routes"]
+        ExportR["Export Routes"]
+        DashR["Dashboard Routes"]
     end
 
     subgraph Pipeline["AI Pipeline (local models only)"]
-        PDF[PyMuPDF\nText + Section Extraction]
-        Sum[BART Summarizer]
-        Simp[Simplifier]
-        KW[KeyBERT Keywords]
-        Contrib[Contribution / Gap / Future\nExtractive Analysis]
-        Method[Methodology Breakdown]
-        Flash[Flashcards]
-        Viva[Viva Questions]
-        Diff[Difficulty Scorer]
-        Cite[Citation Generator]
-        PPT[PPT Outline]
-        RAG[FAISS + Embeddings + QA\n(Chat with PDF)]
+        PDF["PyMuPDF Extract Engine"]
+        Sum["BART Summarizer"]
+        Simp["Text Simplifier"]
+        KW["KeyBERT Extraction"]
+        Contrib["Extractive Contribution Analysis"]
+        Method["Methodology Breakdown Engine"]
+        Flash["Flashcard Engine"]
+        Viva["Viva Template Evaluator"]
+        Diff["Difficulty Metrics Scorer"]
+        Cite["Citation Generator"]
+        PPT["PPT Outline Mapper"]
+        RAG["FAISS Context Search Engine"]
     end
 
-    subgraph Store["Storage"]
+    subgraph Store["Storage Layer"]
         SQLite[(SQLite DB)]
         FAISSIdx[(Per-paper FAISS Index)]
         Files[(Uploaded PDFs / Exports)]
     end
 
     UI -->|REST / JSON| API
-    Papers --> Pipeline
+    
+    %% Fixed: Pointing directly to individual nodes inside subgraphs instead of subgraph wrappers
+    Papers --> PDF
     ChatR --> RAG
-    Pipeline --> SQLite
+    
+    PDF --> SQLite
     RAG --> FAISSIdx
     Papers --> Files
     ExportR --> SQLite
     DashR --> SQLite
-```
 
 ---
 
